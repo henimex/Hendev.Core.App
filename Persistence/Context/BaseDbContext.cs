@@ -23,6 +23,7 @@ public class BaseDbContext : DbContext
     {
         Configuration = configuration;
         //Database.Migrate();
+        //Database.EnsureCreated();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
