@@ -65,6 +65,11 @@ namespace Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("CarState");
 
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Color");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("CreatedDate");

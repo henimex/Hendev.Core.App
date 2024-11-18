@@ -12,8 +12,8 @@ using Persistence.Context;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20241118162908_inital")]
-    partial class inital
+    [Migration("20241118173119_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,6 +67,11 @@ namespace Persistence.Migrations
                     b.Property<int>("CarState")
                         .HasColumnType("int")
                         .HasColumnName("CarState");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Color");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2")

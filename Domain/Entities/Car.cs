@@ -11,6 +11,7 @@ public class Car : Entity<Guid>
     public string Plate { get; set; }
     public short MinFindexScore { get; set; }
     public CarState CarState { get; set; }
+    public string Color { get; set; }
 
     public virtual Model? Model { get; set; }
 
@@ -19,12 +20,13 @@ public class Car : Entity<Guid>
         
     }
 
-    public Car(Guid id, Guid modelId, int kilometer, short modelYear, string plate, short minFindexScore)
+    public Car(Guid id, Guid modelId, int kilometer, short modelYear, string plate, short minFindexScore, string color)
     {
         ModelId = modelId;
         Kilometer = kilometer;
         ModelYear = modelYear;
         Plate = plate;
         MinFindexScore = minFindexScore;
+        Color = color;
     }
 }

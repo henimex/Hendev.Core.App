@@ -17,7 +17,8 @@ public class CarConfiguration : IEntityTypeConfiguration<Car>
         builder.Property(x => x.Plate).HasColumnName("Plate").IsRequired();
         builder.Property(x => x.MinFindexScore).HasColumnName("MinFindexScore").IsRequired();
         builder.Property(x => x.CarState).HasColumnName("CarState").IsRequired();
-        
+        builder.Property(x => x.Color).HasColumnName("Color").IsRequired();
+
         builder.Property(x => x.CreatedDate).HasColumnName("CreatedDate");
         builder.Property(x => x.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(x => x.DeletedDate).HasColumnName("DeletedDate");
