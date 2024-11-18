@@ -11,8 +11,8 @@ public class CreateBrandCommand:IRequest<CreatedBrandResponse>
 
     public class CreateBrandCommandHandler:IRequestHandler<CreateBrandCommand, CreatedBrandResponse>
     {
-        private readonly IBrandRepository _brandRepository;
         private readonly IMapper _mapper;
+        private readonly IBrandRepository _brandRepository;
 
         public CreateBrandCommandHandler(IBrandRepository brandRepository, IMapper mapper)
         {

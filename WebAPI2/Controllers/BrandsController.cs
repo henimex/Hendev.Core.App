@@ -5,6 +5,10 @@ using Core.Application.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Application.Features.Brands.Commands.Delete;
+using Application.Features.Brands.Commands.Update;
+using Application.Features.Brands.Queries.GetById;
+using Application.Features.Brands.Queries.GetListWithDeleted;
 
 namespace WebAPI2.Controllers
 {
@@ -22,8 +26,38 @@ namespace WebAPI2.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
-            GetListBrandQuery getListBrandQuery = new() { PageRequest = pageRequest };
+            GetListBrandQuery getListBrandQuery = new() {PageRequest = pageRequest};
             GetListResponse<GetListBrandListItemDto> response = await Mediator.Send(getListBrandQuery);
+            return Ok(response);
+        }
+
+        [HttpGet("With Deleted")]
+        public async Task<IActionResult> GetListWithDeleted([FromQuery] PageRequest pageRequest)
+        {
+            GetListBrandAllQuery getListBrandAllQuery = new() { PageRequest = pageRequest };
+            GetListResponse<GetListBrandAllItemDto> response = await Mediator.Send(getListBrandAllQuery);
+            return Ok(response);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
+        {
+            GetByIdBrandQuery getByIdBrandQuery = new() {Id = id};
+            GetByIdBrandResponse response = await Mediator.Send(getByIdBrandQuery);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateBrandCommand updateCommand)
+        {
+            UpdatedBrandResponse response = await Mediator.Send(updateCommand);
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            DeletedBrandResponse response = await Mediator.Send(new DeleteBrandCommand {Id = id});
             return Ok(response);
         }
     }
