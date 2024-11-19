@@ -16,24 +16,27 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
-        //CreateMap<Model, GetListModelListItemDto>().ReverseMap();
-        //CreateMap<Model, GetListByDynamicModelListItemDto>();
-
-        //CreateMap<Paginate<Model>, GetListResponse<GetListModelListItemDto>>().ReverseMap();
-        //CreateMap<Paginate<Model>, GetListResponse<GetListByDynamicModelListItemDto>>().ReverseMap();
-
-        CreateMap<Model, GetListModelListItemDto>()
-            .ForMember(destinationMember: c => c.BrandName, memberOptions: opt => opt.MapFrom(c => c.Brand.Name))
-            .ForMember(destinationMember: c => c.FuelName, memberOptions: opt => opt.MapFrom(c => c.Fuel.Name))
-            .ForMember(destinationMember: c => c.TransmissionName, memberOptions: opt => opt.MapFrom(c => c.Transmission.Name))
-            .ReverseMap();
-        CreateMap<Model, GetListByDynamicModelListItemDto>()
-            .ForMember(destinationMember: c => c.BrandName, memberOptions: opt => opt.MapFrom(c => c.Brand.Name))
-            .ForMember(destinationMember: c => c.FuelName, memberOptions: opt => opt.MapFrom(c => c.Fuel.Name))
-            .ForMember(destinationMember: c => c.TransmissionName, memberOptions: opt => opt.MapFrom(c => c.Transmission.Name))
-            .ReverseMap();
+        //Version 1 General Usage Could Be Used if There is No Problem
+        CreateMap<Model, GetListModelListItemDto>().ReverseMap();
+        CreateMap<Model, GetListByDynamicModelListItemDto>();
 
         CreateMap<Paginate<Model>, GetListResponse<GetListModelListItemDto>>().ReverseMap();
         CreateMap<Paginate<Model>, GetListResponse<GetListByDynamicModelListItemDto>>().ReverseMap();
+
+
+        //Version 2 Specified Fields !! For Advanced Usage or renamed tables
+        //CreateMap<Model, GetListModelListItemDto>()
+        //    .ForMember(destinationMember: c => c.BrandName, memberOptions: opt => opt.MapFrom(c => c.Brand.Name))
+        //    .ForMember(destinationMember: c => c.FuelName, memberOptions: opt => opt.MapFrom(c => c.Fuel.Name))
+        //    .ForMember(destinationMember: c => c.TransmissionName, memberOptions: opt => opt.MapFrom(c => c.Transmission.Name))
+        //    .ReverseMap();
+        //CreateMap<Model, GetListByDynamicModelListItemDto>()
+        //    .ForMember(destinationMember: c => c.BrandName, memberOptions: opt => opt.MapFrom(c => c.Brand.Name))
+        //    .ForMember(destinationMember: c => c.FuelName, memberOptions: opt => opt.MapFrom(c => c.Fuel.Name))
+        //    .ForMember(destinationMember: c => c.TransmissionName, memberOptions: opt => opt.MapFrom(c => c.Transmission.Name))
+        //    .ReverseMap();
+
+        //CreateMap<Paginate<Model>, GetListResponse<GetListModelListItemDto>>().ReverseMap();
+        //CreateMap<Paginate<Model>, GetListResponse<GetListByDynamicModelListItemDto>>().ReverseMap();
     }
 }
