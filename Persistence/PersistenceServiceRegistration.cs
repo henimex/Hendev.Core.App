@@ -20,6 +20,7 @@ public static class PersistenceServiceRegistration
         //services.AddDbContext<BaseDbContext>(options => options.UseInMemoryDatabase("HenDevCore"));
         services.AddDbContext<BaseDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("HenDevCore")));
         services.AddScoped<IBrandRepository, BrandRepository>();
+        services.AddScoped<IModelRepository, ModelRepository>();
 
         return services;
     }
