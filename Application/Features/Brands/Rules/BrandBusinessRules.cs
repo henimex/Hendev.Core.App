@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Application.Features.Brands.Constants;
 using Application.Services.Repositories;
 using Core.Application.Rules;
-using Core.CrosCuttingConcerns.Exceptions.Types;
+using Core.CrossCuttingConcerns.Exceptions.Types;
 using Domain.Entities;
 
 namespace Application.Features.Brands.Rules;
