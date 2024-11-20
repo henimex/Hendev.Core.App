@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Features.Models.Constants;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Caching;
 using Core.Application.Requests;
 using Core.Application.Responses;
 using Core.Persistence.Paging;
@@ -14,9 +16,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.Models.Queries.GetList;
 
-public class GetListModelQuery : IRequest<GetListResponse<GetListModelListItemDto>>
+public class GetListModelQuery : IRequest<GetListResponse<GetListModelListItemDto>>, ICacheRequest
 {
     public PageRequest PageRequest { get; set; }
+
+    public string CacheKey => $"GetListModelQuery({PageRequest.PageIndex}, {PageRequest.PageSize})";
+    public bool BypassCache { get; }
+    public string? CacheGroupKey => CacheModelGroupKeys.ModelGroupKey;
+    public TimeSpan? SlidingExpiration { get; }
 
     public class GetListModelQueryHandler : IRequestHandler<GetListModelQuery, GetListResponse<GetListModelListItemDto>>
     {

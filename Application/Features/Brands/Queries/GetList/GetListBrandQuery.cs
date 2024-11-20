@@ -1,4 +1,5 @@
-﻿using Application.Services.Repositories;
+﻿using Application.Features.Brands.Constants;
+using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Pipelines.Caching;
 using Core.Application.Requests;
@@ -16,6 +17,7 @@ public class GetListBrandQuery:IRequest<GetListResponse<GetListBrandListItemDto>
 
     public string CacheKey => $"GetListBrandQuery({PageRequest.PageIndex}, {PageRequest.PageSize})";
     public bool BypassCache { get; }
+    public string? CacheGroupKey => CacheBrandGroupKeys.BrandGroupKey;
     public TimeSpan? SlidingExpiration { get; }
 
     public class GetListBrandQueryHandler:IRequestHandler<GetListBrandQuery, GetListResponse<GetListBrandListItemDto>>

@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.Features.Brands.Constants;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Caching;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Brands.Commands.Update;
 
-public class UpdateBrandCommand :IRequest<UpdatedBrandResponse>
+public class UpdateBrandCommand :IRequest<UpdatedBrandResponse>, ICacheRemoverRequest
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
+
+    public string? CacheKey { get; }
+    public bool BypassCache { get; }
+    public string? CacheGroupKey => CacheBrandGroupKeys.BrandGroupKey;
 
     public class UpdateBrandCommandHandler : IRequestHandler<UpdateBrandCommand, UpdatedBrandResponse>
     {
