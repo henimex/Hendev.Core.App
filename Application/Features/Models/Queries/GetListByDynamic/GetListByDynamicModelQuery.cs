@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Services.Repositories;
+﻿using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Pipelines.Caching;
+using Core.Application.Pipelines.Logging;
 using Core.Application.Requests;
 using Core.Application.Responses;
 using Core.Persistence.Dynamic;
@@ -16,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.Models.Queries.GetListByDynamic;
 
-public class GetListByDynamicModelQuery : IRequest<GetListResponse<GetListByDynamicModelListItemDto>>, ICacheRequest
+public class GetListByDynamicModelQuery : IRequest<GetListResponse<GetListByDynamicModelListItemDto>>, ICacheRequest, ILogRequest
 {
     public PageRequest PageRequest { get; set; }
     public DynamicQuery DynamicQuery { get; set; }

@@ -5,6 +5,9 @@ using Core.Application.Pipelines.Transaction;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
 using Core.Application.Pipelines.Caching;
+using Core.Application.Pipelines.Logging;
+using Core.CrossCuttingConcerns.Serilog;
+using Core.CrossCuttingConcerns.Serilog.Loggers;
 
 namespace Application;
 
@@ -20,10 +23,14 @@ public static class ApplicationServiceRegistration
         {
             configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
             configuration.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
+            configuration.AddOpenBehavior(typeof(LoggingBehavior<,>));
             configuration.AddOpenBehavior(typeof(TransactionScopeBehavior<,>));
             configuration.AddOpenBehavior(typeof(CachingBehavior<,>));
             configuration.AddOpenBehavior(typeof(CacheRemovingBehavior<,>));
+            
         });
+
+        services.AddSingleton<LoggerServiceBase, FileLogger>();
 
         return services;
     }
