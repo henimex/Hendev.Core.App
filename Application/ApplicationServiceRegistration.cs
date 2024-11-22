@@ -30,7 +30,8 @@ public static class ApplicationServiceRegistration
             
         });
 
-        services.AddSingleton<LoggerServiceBase, FileLogger>();
+        //services.AddSingleton<LoggerServiceBase, FileLogger>();
+        services.AddSingleton<LoggerServiceBase, MsSqlLogger>();
 
         return services;
     }
