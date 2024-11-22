@@ -1,13 +1,8 @@
 ﻿using Application.Features.Models.Queries.GetList;
+using Application.Features.Models.Queries.GetListByDynamic;
 using AutoMapper;
 using Core.Application.Responses;
 using Core.Persistence.Paging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Features.Models.Queries.GetListByDynamic;
 using Domain.Entities;
 
 namespace Application.Features.Models.Profiles;
